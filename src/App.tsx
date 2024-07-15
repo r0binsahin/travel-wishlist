@@ -37,15 +37,25 @@ function App() {
       if (city.id === id) {
         const updatedCity = { ...city, isVisited: !city.isVisited };
         updateCityOnDatabase(updatedCity);
+        setCities([...cities, updatedCity]);
         console.log('updated:', updatedCity);
         return updatedCity;
       }
     });
   };
 
+  const addCity = async (name: string) => {
+    try {
+      const newCity = { name, isVisited: false };
+      const res = await axios.post('http://localhost:3000/cities', newCity);
+      setCities([...cities, res.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
-      <AddCity />
+      <AddCity addCity={addCity} />
       <DisplayCities cities={cities} handleChange={handleChange} />
     </>
   );
