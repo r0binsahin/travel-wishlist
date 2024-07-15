@@ -14,7 +14,7 @@ export const DisplayCities = ({ cities, handleChange }: DisplayCitiesProps) => {
     <div className='cities-container'>
       <h1>
         🥳 <strong style={{ color: '#9A4C95' }}>Congrats! </strong>
-        You have visisted{' '}
+        You have visited{' '}
         <strong style={{ color: '#D72638', fontSize: '38px' }}>
           {visitedCities.length}
         </strong>{' '}
