@@ -3,56 +3,72 @@ import './App.css';
 import { AddCity } from './components/addCity/AddCity';
 import { DisplayCities } from './components/displayCities/DisplayCities';
 import { City } from './models/City';
-import axios from 'axios';
+import { randomId } from './utils/randonId';
 
 function App() {
   const [cities, setCities] = useState<City[]>([]);
-  const getCities = async () => {
-    const res = await axios.get('http://localhost:3000/cities');
-
-    console.log('data:', res.data);
-    return res.data;
-  };
 
   useEffect(() => {
-    const fetchCities = async () => {
-      const cities = await getCities();
-      setCities(cities);
-    };
-
-    fetchCities();
+    const storedCities = localStorage.getItem('cities');
+    if (storedCities) {
+      setCities(JSON.parse(storedCities));
+    } else {
+      setCities([
+        {
+          id: '1',
+          name: 'Stockholm',
+          isVisited: false,
+        },
+        {
+          id: '2',
+          name: 'Helsinki',
+          isVisited: false,
+        },
+        {
+          id: '3',
+          name: 'Oslo',
+          isVisited: true,
+        },
+        {
+          id: '4',
+          name: 'Copenhagen',
+          isVisited: true,
+        },
+      ]);
+    }
   }, []);
 
   const handleChange = async (id: string) => {
     const cityIndex = cities.findIndex((city) => city.id === id);
 
-    const updatedCity = {
-      ...cities[cityIndex],
-      isVisited: !cities[cityIndex].isVisited,
-    };
+    if (cityIndex !== -1) {
+      const updatedCity = {
+        ...cities[cityIndex],
+        isVisited: !cities[cityIndex].isVisited,
+      };
 
-    setCities(
-      cities.map((city, index) => (index === cityIndex ? updatedCity : city))
-    );
+      const updatedCities = cities.map((city, index) =>
+        index === cityIndex ? updatedCity : city
+      );
+      localStorage.setItem('cities', JSON.stringify(updatedCities));
 
-    /*     try {
-      await axios.patch(`http://localhost:3000/cities/${id}`, {
-        isVisited: updatedCity.isVisited,
-      });
-    } catch (error) {
-      console.error('Failed to update city in database:', error);
-    } */
+      setCities(updatedCities);
+    }
   };
 
   const addCity = async (name: string) => {
     try {
-      const newCity = { id: new Date().toString(), name, isVisited: false };
-      /*      const res = await axios.post('http://localhost:3000/cities', newCity); */
-      setCities([...cities, newCity]);
+      const newCity = { id: randomId(), name, isVisited: false };
+      const updatedCities = [...cities, newCity];
+
+      localStorage.setItem('cities', JSON.stringify(updatedCities));
+
+      setCities(updatedCities);
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <>
       <AddCity addCity={addCity} />
