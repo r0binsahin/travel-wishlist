@@ -1,7 +1,7 @@
 {
   "cities": [
-    { "id": "1", "name": "Stockholm", "isVisited": false },
-    { "id": "2", "name": "Helsinki", "isVisited": false },
+    { "id": "1", "name": "Stockholm", "isVisited": true },
+    { "id": "2", "name": "Helsinki", "isVisited": true },
     { "id": "3", "name": "Oslo", "isVisited": false },
     { "id": "4", "name": "Copenhagen", "isVisited": false }
   ]
