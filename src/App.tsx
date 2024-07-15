@@ -4,6 +4,28 @@ import { AddCity } from './components/addCity/AddCity';
 import { DisplayCities } from './components/displayCities/DisplayCities';
 import { City } from './models/City';
 import { randomId } from './utils/randonId';
+const defaultCities = [
+  {
+    id: '1',
+    name: 'Stockholm',
+    isVisited: false,
+  },
+  {
+    id: '2',
+    name: 'Helsinki',
+    isVisited: false,
+  },
+  {
+    id: '3',
+    name: 'Oslo',
+    isVisited: true,
+  },
+  {
+    id: '4',
+    name: 'Copenhagen',
+    isVisited: true,
+  },
+];
 
 function App() {
   const [cities, setCities] = useState<City[]>([]);
@@ -13,28 +35,7 @@ function App() {
     if (storedCities) {
       setCities(JSON.parse(storedCities));
     } else {
-      setCities([
-        {
-          id: '1',
-          name: 'Stockholm',
-          isVisited: false,
-        },
-        {
-          id: '2',
-          name: 'Helsinki',
-          isVisited: false,
-        },
-        {
-          id: '3',
-          name: 'Oslo',
-          isVisited: true,
-        },
-        {
-          id: '4',
-          name: 'Copenhagen',
-          isVisited: true,
-        },
-      ]);
+      setCities(defaultCities);
     }
   }, []);
 

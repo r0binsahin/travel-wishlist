@@ -1,0 +1,53 @@
+.cities-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .cities-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .cities-container h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .cities-toVisit, .visited-cities {
+    margin-bottom: 30px;
+  }
+  
+  .cities-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .city {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .city label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .city input[type='checkbox'] {
+    margin-left: 10px;
+    cursor: pointer;
+  }
