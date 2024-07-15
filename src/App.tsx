@@ -71,10 +71,11 @@ function App() {
   };
 
   return (
-    <>
+    <div className='mainContainer'>
+      <h1 className='pageTitle'>Robin's travel wishlist</h1>
       <AddCity addCity={addCity} />
       <DisplayCities cities={cities} handleChange={handleChange} />
-    </>
+    </div>
   );
 }
 
