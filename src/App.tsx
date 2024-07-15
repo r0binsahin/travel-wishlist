@@ -22,11 +22,31 @@ function App() {
 
     fetchCities();
   }, []);
+  const updateCityOnDatabase = async (city: City) => {
+    try {
+      axios.patch(`http://localhost:3000/cities/${city.id}`, {
+        isVisited: city.isVisited,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleChange = (id: string) => {
+    cities.map((city) => {
+      if (city.id === id) {
+        const updatedCity = { ...city, isVisited: !city.isVisited };
+        updateCityOnDatabase(updatedCity);
+        console.log('updated:', updatedCity);
+        return updatedCity;
+      }
+    });
+  };
 
   return (
     <>
       <AddCity />
-      <DisplayCities cities={cities} />
+      <DisplayCities cities={cities} handleChange={handleChange} />
     </>
   );
 }

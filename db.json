@@ -3,22 +3,22 @@
     {
       "id": "1",
       "name": "Stockholm",
-      "isVisited": true
+      "isVisited": false
     },
     {
       "id": "2",
       "name": "Helsinki",
-      "isVisited": true
+      "isVisited": false
     },
     {
       "id": "3",
       "name": "Oslo",
-      "isVisited": false
+      "isVisited": true
     },
     {
       "id": "4",
       "name": "Copenhagen",
-      "isVisited": false
+      "isVisited": true
     }
   ]
 }
