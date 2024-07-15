@@ -22,33 +22,33 @@ function App() {
 
     fetchCities();
   }, []);
-  const updateCityOnDatabase = async (city: City) => {
-    try {
-      axios.patch(`http://localhost:3000/cities/${city.id}`, {
-        isVisited: city.isVisited,
+
+  const handleChange = async (id: string) => {
+    const cityIndex = cities.findIndex((city) => city.id === id);
+
+    const updatedCity = {
+      ...cities[cityIndex],
+      isVisited: !cities[cityIndex].isVisited,
+    };
+
+    setCities(
+      cities.map((city, index) => (index === cityIndex ? updatedCity : city))
+    );
+
+    /*     try {
+      await axios.patch(`http://localhost:3000/cities/${id}`, {
+        isVisited: updatedCity.isVisited,
       });
     } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleChange = (id: string) => {
-    cities.map((city) => {
-      if (city.id === id) {
-        const updatedCity = { ...city, isVisited: !city.isVisited };
-        updateCityOnDatabase(updatedCity);
-        setCities([...cities, updatedCity]);
-        console.log('updated:', updatedCity);
-        return updatedCity;
-      }
-    });
+      console.error('Failed to update city in database:', error);
+    } */
   };
 
   const addCity = async (name: string) => {
     try {
-      const newCity = { name, isVisited: false };
-      const res = await axios.post('http://localhost:3000/cities', newCity);
-      setCities([...cities, res.data]);
+      const newCity = { id: new Date().toString(), name, isVisited: false };
+      /*      const res = await axios.post('http://localhost:3000/cities', newCity); */
+      setCities([...cities, newCity]);
     } catch (error) {
       console.log(error);
     }

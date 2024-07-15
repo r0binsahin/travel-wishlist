@@ -12,6 +12,7 @@ export const DisplayCities = ({ cities, handleChange }: DisplayCitiesProps) => {
 
   return (
     <div className='cities-container'>
+      <h1>Congrats! You have visisted {visitedCities.length} cities</h1>
       <div className='cities-toVisit'>
         <h3>Cities to visit</h3>
         <div className='cities-wrapper'>
