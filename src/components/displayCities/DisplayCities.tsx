@@ -12,7 +12,14 @@ export const DisplayCities = ({ cities, handleChange }: DisplayCitiesProps) => {
 
   return (
     <div className='cities-container'>
-      <h1>Congrats! You have visisted {visitedCities.length} cities</h1>
+      <h1>
+        🥳 <strong style={{ color: '#9A4C95' }}>Congrats! </strong>
+        You have visisted{' '}
+        <strong style={{ color: '#D72638', fontSize: '38px' }}>
+          {visitedCities.length}
+        </strong>{' '}
+        cities ✈️ 🚂 🚴‍♀️
+      </h1>
       <div className='cities-toVisit'>
         <h3>Cities to visit</h3>
         <div className='cities-wrapper'>
