@@ -8,10 +8,10 @@ import axios from 'axios';
 function App() {
   const [cities, setCities] = useState<City[]>([]);
   const getCities = async () => {
-    const res = await axios.get('../db.json');
+    const res = await axios.get('http://localhost:3000/cities');
 
-    console.log(res.data);
-    return res.data.cities;
+    console.log('data:', res.data);
+    return res.data;
   };
 
   useEffect(() => {
